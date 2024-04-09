@@ -11,6 +11,7 @@ function thesis() {
         echo "Please provide a package name."
         return 1
       fi
+      cd src
       ros2 pkg create --build-type ament_python "$2"
       ;;
     "run")
@@ -19,7 +20,7 @@ function thesis() {
         return 1
       fi
       source install/local_setup.bash
-      ros2 run "$2"
+      ros2 run thesis "$2"
       ;;
     *)
       echo "Usage:"
