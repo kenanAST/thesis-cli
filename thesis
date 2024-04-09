@@ -1,24 +1,33 @@
 #!/bin/bash
 
 function thesis() {
-    case "$1" in
-        "build")
-            rosdep install -i --from-path src --rosdistro iron -y
-            colcon build
-            ;;
-        "newpackage")
-            if [ -z "$2" ]; then
-                echo "Please provide a package name."
-                return 1
-            fi
-            ros2 pkg create --build-type ament_python "$2"
-            ;;
-        *)
-            echo "Usage:"
-            echo "thesis build"
-            echo "thesis newpackage <package_name>"
-            ;;
-    esac
+  case "$1" in
+    "build")
+      rosdep install -i --from-path src --rosdistro iron -y
+      colcon build
+      ;;
+    "newpackage")
+      if [ -z "$2" ]; then
+        echo "Please provide a package name."
+        return 1
+      fi
+      ros2 pkg create --build-type ament_python "$2"
+      ;;
+    "run")
+      if [ -z "$2" ]; then
+        echo "Please provide a node name."
+        return 1
+      fi
+      source install/local_setup.bash
+      ros2 run package-name "$2"
+      ;;
+    *)
+      echo "Usage:"
+      echo "thesis build"
+      echo "thesis newpackage <package_name>"
+      echo "thesis run <node-name>"
+      ;;
+  esac
 }
 
 thesis "$@"

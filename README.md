@@ -8,3 +8,4 @@ The script can be invoked with one of two arguments:
 
 1. `build`
 2. `newpackage <package_name>`
+3. `thesis run <node-name>`
