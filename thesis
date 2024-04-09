@@ -19,13 +19,13 @@ function thesis() {
         return 1
       fi
       source install/local_setup.bash
-      ros2 run package-name "$2"
+      ros2 run "$2"
       ;;
     *)
       echo "Usage:"
       echo "thesis build"
       echo "thesis newpackage <package_name>"
-      echo "thesis run <node-name>"
+      echo "thesis run <node_name>"
       ;;
   esac
 }
